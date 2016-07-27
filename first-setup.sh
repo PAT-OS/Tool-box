@@ -18,7 +18,7 @@ chmod +x systeminfo
 chmod +x ipconfig.sh
 mv systeminfo /usr/bin/systeminfo
 mv ipconfig.sh /usr/bin/ipconfig
-sudo curl -L --output /usr/bin/rpi-update https://raw.githubusercontent.com/Hexxeh/rpiupdate/master/rpi-update && sudo chmod +x /usr/bin/rpi-update
+sudo curl -L --output /usr/bin/rpi-update https://raw.githubusercontent.com/Hexxeh/rpi-update/master/rpi-update && sudo chmod +x /usr/bin/rpi-update
 sleep 4
 echo "we zijn klaar met het klaar zetten, zodra u deze tools wil gebruiken typ dan het volgende"
 echo "systeminfo voor system info"
