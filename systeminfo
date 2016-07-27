@@ -1,6 +1,6 @@
 #!/bin/sh
 
-#kleuren
+#kleurtjes :D
 
 rd=$(tput setaf 1) # Red
 gr=$(tput setaf 2) # Green
@@ -11,69 +11,81 @@ cy=$(tput setaf 6) # Cyan
 wi=$(tput setaf 7) # White
 rst=$(tput sgr0) # Text reset.
 
-#vars
+# dit laat de custom versie zien (moet nog aangepast worden zodat dit niet handmatig hoeft)
 
 version=$(echo Service pi v1.1)
+
+# Laat de versie zien van Ubuntu + de architectuur van de processor
+
 shell=$(lsb_release -a | sed 'N;s/\n/ /;N;s/\n/ /' | awk '{ print $8,$9,$10}' | sed 'N;s/\n/ /;N;s/\n/ /')
 arch=$(uname -a | sed 'N;s/\n/ /;N;s/\n/ /' | awk '{ print $13,$16}')
+
+# Meegenomen van mijn IPCONFIG script (laat het ip (enkel het ip) zien voor gebruikers gemak) 
+
 kabel=$( ifconfig | grep -A 1 "eth" | sed 'N;s/\n/ /;N;s/\n/ /' | awk '{ print $7}' | cut -d: -f2 )
 wifi=$( ifconfig | grep -A 1 "wlan" | sed 'N;s/\n/ /;N;s/\n/ /' | awk '{ print $7}' | cut -d: -f2 )
+
+# calculeren van Beide ram geheugen als hardeschijf ruimte
+
 mem1=$( free | sed 'N;s/\n/ /;N;s/\n/ /' | awk '{ print $8 }' | awk '{ total = $1 / 1024 ; print total }' )
 mem2=$( free | sed 'N;s/\n/ /;N;s/\n/ /' | awk '{ print $17}' | awk '{ total = $1 / 1024 ; print total }' )
 mem3=$( free | sed 'N;s/\n/ /;N;s/\n/ /' | awk '{ print $16}' | awk '{ total = $1 / 1024 ; print total }')
-mem1r=$( printf "%.1f" "$mem1" | awk '{ total = $1 ; print total " MB" }' )
-mem2r=$( printf "%.1f" "$mem2" | awk '{ total = $1 ; print total " MB" }' )
-mem3r=$( printf "%.1f" "$mem3" | awk '{ total = $1 ; print total " MB" }' )
+hdd3=$( df -k . | sed 'N;s/\n/ /;N;s/\n/ /' | awk '{ print $10}' | awk '{ total = $1 / 1024 ; print total }')
 hdd1=$( df -k . | sed 'N;s/\n/ /;N;s/\n/ /' | awk '{ print $9 }' | awk '{ total = $1 / 1024 / 1024 ; print total }')
 hdd2=$( df -k . | sed 'N;s/\n/ /;N;s/\n/ /' | awk '{ print $11}' | awk '{ total = $1 / 1024 / 1024 ; print total }')
 hdd3GB=$(  df -k . | sed 'N;s/\n/ /;N;s/\n/ /' | awk '{ print $10}' | awk '{ total = $1 / 1024 /1024 ; print total }')
-hdd3=$( df -k . | sed 'N;s/\n/ /;N;s/\n/ /' | awk '{ print $10}' | awk '{ total = $1 / 1024 ; print total }')
+
+# Leesbaar maken voor mensen
 
 hdd1r=$( printf "%.1f" "$hdd1" | awk '{ total = $1 ; print total " GB" }' )
 hdd2r=$( printf "%.1f" "$hdd2" | awk '{ total = $1 ; print total " GB" }' )
 hdd3r=$( printf "%.1f" "$hdd3" | awk '{ total = $1 ; print total " MB" }' )
 hdd3GBR=$( printf "%.1f" "$hdd3GB" | awk '{ total = $1 ; print total " GB" }' )
+mem1r=$( printf "%.1f" "$mem1" | awk '{ total = $1 ; print total " MB" }' )
+mem2r=$( printf "%.1f" "$mem2" | awk '{ total = $1 ; print total " MB" }' )
+mem3r=$( printf "%.1f" "$mem3" | awk '{ total = $1 ; print total " MB" }' )
+
 
 clear
 
 #commands
 
-echo "${rd}Dit is uw systeem informatie"
+echo "${rd}Dit is uw systeem informatie" 
 echo ${rst}
 echo ${gl}Uw versie is ${rst}
-echo ${gr}$version
+echo ${gr}$version   # roept de custom versie variable op
 echo ${rst}
 echo ${gl}Deze is gebouwd op ${rst}
-echo ${gr}$shell
+echo ${gr}$shell     # roept de versie van de shell/foundatie/waar de custom is op gebouwt variable op
 echo ${rst}
 echo ${gl}Het processor type is ${rst}
-echo ${gr}$arch
+echo ${gr}$arch      # roept de architectuur van de processor op
 echo ${rst}
 echo ${gl}Uw ip address via kabel is ${rst}
-echo ${gr}$kabel
+echo ${gr}$kabel     # Roept letterlijk het ip adress van de kabel aansluiting op
 echo ${rst}
 echo ${gl}Uw ip adress via wifi is ${rst}
-echo ${gr}$wifi
+echo ${gr}$wifi      # Roept letterlijk het ip adress van wifi aansluiting op
 echo ${rst}
 echo ${gl}"Ram geheugen vrij (rood is de hoeveelheid ram er in het systeem is, groen is wat niet gebruikt word,t blauw is wat er momenteel in gebruik is)" ${rst}
-echo ${rd}$mem1r ${rst}/ ${cy}$mem3r ${rst}/ ${gr}$mem2r ${rst}
+echo ${rd}$mem1r ${rst}/ ${cy}$mem3r ${rst}/ ${gr}$mem2r ${rst}   # dit laat zien (in volgorde: hoeveelheid, in gebruik, beschikbaar) voor RAM geheugen
 echo
 echo ${gl}"Schijfruimte vrij (rood is de hoeveelheid schijfruimte er in het systeem is, groen is wat er nog beschikbaar is, blauw is wat er momenteel in gebruik is)" ${rst}
 
 if [ $hdd3 > 1024 ];
 then
-echo ${rd}$hdd1r ${rst}/ ${cy}$hdd3GBR ${rst}/ ${gr}$hdd2r ${rst}
+echo ${rd}$hdd1r ${rst}/ ${cy}$hdd3GBR ${rst}/ ${gr}$hdd2r ${rst} # dit laat zien (in volgorde: hoeveelheid, in gebruik, beschikbaar) voor Hardeschijf ruimte
 echo
-echo Gemaakt door ${rd}Patrick Pigmans${rst} voor${cy} Servicenet ITF${rst}
+echo Gemaakt door ${rd}Patrick Pigmans${rst} voor${cy} Servicenet ITF${rst} # credits, yup..
 echo
 exit 1
 fi
 
 if [ $hdd3 < 1024 ];
 then
-echo ${rd}$hdd1r ${rst}/ ${cy}$hdd3r ${rst}/ ${gr}$hdd2r ${rst}
+echo ${rd}$hdd1r ${rst}/ ${cy}$hdd3r ${rst}/ ${gr}$hdd2r ${rst} # dit laat zien (in volgorde: hoeveelheid, in gebruik, beschikbaar) voor Hardeschijf ruimte
 echo
-echo Gemaakt door ${rd}Patrick Pigmans${rst} voor${cy} Servicenet ITF${rst}
+echo Gemaakt door ${rd}Patrick Pigmans${rst} voor${cy} Servicenet ITF${rst} # credits, yup..
 echo
 exit 1
 fi
