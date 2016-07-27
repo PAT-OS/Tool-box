@@ -2,13 +2,13 @@
 
 #kleurtjes :D
 
-rd=$(tput setaf 1) # Red
-gr=$(tput setaf 2) # Green
-gl=$(tput setaf 3) # Yellow
-bl=$(tput setaf 4) # Blue
-pa=$(tput setaf 5) # Purple
-cy=$(tput setaf 6) # Cyan
-wi=$(tput setaf 7) # White
+rd=$(tput setaf 1) # Red/Rood
+gr=$(tput setaf 2) # Green/Groen
+gl=$(tput setaf 3) # Yellow/Geel
+bl=$(tput setaf 4) # Blue/Blauw
+pa=$(tput setaf 5) # Purple/Paars
+cy=$(tput setaf 6) # Cyan/Cyaan
+wi=$(tput setaf 7) # White/Wit
 rst=$(tput sgr0) # Text reset.
 
 # dit laat de custom versie zien (moet nog aangepast worden zodat dit niet handmatig hoeft)
