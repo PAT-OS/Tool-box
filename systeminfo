@@ -50,7 +50,7 @@ clear
 
 #commands
 
-echo "${rd}Dit is uw systeem informatie" 
+echo "${rd}Dit is uw systeem informatie"
 echo ${rst}
 echo ${gl}Uw versie is ${rst}
 echo ${gr}$version   # roept de custom versie variable op
@@ -78,8 +78,12 @@ echo ${rd}$hdd1r ${rst}/ ${cy}$hdd3GBR ${rst}/ ${gr}$hdd2r ${rst} # dit laat zie
 echo
 echo Gemaakt door ${rd}Patrick Pigmans${rst} voor${cy} Servicenet ITF${rst} # credits, yup..
 echo
+rm -rf 1024
+sleep 10
 exit 1
 fi
+
+
 
 if [ $hdd3 < 1024 ];
 then
@@ -87,5 +91,8 @@ echo ${rd}$hdd1r ${rst}/ ${cy}$hdd3r ${rst}/ ${gr}$hdd2r ${rst} # dit laat zien 
 echo
 echo Gemaakt door ${rd}Patrick Pigmans${rst} voor${cy} Servicenet ITF${rst} # credits, yup..
 echo
+rm -rf 1024
+sleep 10
 exit 1
 fi
+
