@@ -1,41 +1,24 @@
-PS3="Hoe zit u aangesloten op het netwerk via (1-3): "
-echo
-select name in Kabel Wifi Afsluiten
-do
-        break
-done
-if [ "$name" = "Kabel" ]; then
-echo
-echo "U zit aangesloten via $name."
-echo
-echo "Uw ip adress is"
-echo
+#!/bin/sh
+
+rd=$(tput setaf 1) # Red/Rood
+gr=$(tput setaf 2) # Green/Groen
+gl=$(tput setaf 3) # Yellow/Geel
+bl=$(tput setaf 4) # Blue/Blauw
+pa=$(tput setaf 5) # Purple/Paars
+cy=$(tput setaf 6) # Cyan/Cyaan
+wi=$(tput setaf 7) # White/Wit
+rst=$(tput sgr0) # Text reset.
 kabel=$( ifconfig | grep -A 1 "eth" | sed 'N;s/\n/ /;N;s/\n/ /' | awk '{ print $7}' | cut -d: -f2 )
-kabel=$( ifconfig | grep -A 1 "enx" | sed 'N;s/\n/ /;N;s/\n/ /' | awk '{ print $7}' | cut -d: -f2 )
-echo "${kabel}"
-echo
-echo "Druk op enter om door te gaan..."
-read enter
-exit 1
-fi
-
-if [ "$name" = "Wifi" ]; then
-echo
-echo "U zit aangelosten via $name."
-echo
-echo "Uw ip adress is"
-echo
 wifi=$( ifconfig | grep -A 1 "wlan" | sed 'N;s/\n/ /;N;s/\n/ /' | awk '{ print $7}' | cut -d: -f2 )
-echo "${wifi}"
-echo
-echo "Druk op enter om door te gaan..."
-read enter
-exit 1
-fi
 
-if [ "$name" = "Afsluiten" ]; then
+
+
+
+read -p "Toets ${rd}1$rst voor het IP van uw ${gr}KABEL$rst aansluiting, Toets ${rd}2$rst voor het IP van uw ${gr}WIFI$rst aansluting, Druk op een willekeurige ${rd}Toets$rst voor ${gr}Afsluiten$rst " ans;
 echo
-echo "Druk op enter om af te sluiten..."
-read enter
-exit 1
-fi
+
+case $ans in
+    1)    echo && echo "U zit aangesloten via kabel, uw ip is: "${gr}$kabel ${rst} && echo &&  echo Gemaakt door ${rd}Patrick Pigmans${rst} voor${cy} Servicenet ITF${rst} && sleep 5 && echo ;;
+    2)    echo && echo "U zit aangesloten via WIFI. Uw IP is: "${gr}$wifi ${rst} && echo && echo Gemaakt door ${rd}Patrick Pigmans${rst} voor${cy} Servicenet ITF${rst} &&  sleep 5 && echo;;
+    *)    echo "Afsluiten" && echo && echo Gemaakt door ${rd}Patrick Pigmans${rst} voor${cy} Servicenet ITF${rst} && sleep 3 && echo;;
+esac
