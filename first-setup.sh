@@ -8,7 +8,7 @@ read x
 if [ "x$x" = "xja" ] ; then
 echo Ok, we gaan de tools klaar zetten voor U.
 cd ./set_overscan
-apt-get install gcc automake -y
+apt-get install gcc automake curl make -y
 make
 chmod +x set_overscan.sh
 mv set_overscan.sh /usr/bin/overscan
@@ -36,7 +36,7 @@ fi
 else
 echo "installatie zonder raspberry pi onderdelen begonnen"
 cd ./set_overscan
-apt-get install gcc automake -y
+apt-get install gcc automake curl make -y
 make
 chmod +x set_overscan.sh
 mv set_overscan.sh /usr/bin/overscan
