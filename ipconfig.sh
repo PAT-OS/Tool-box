@@ -20,5 +20,8 @@ echo
 case $ans in
     1)    echo && echo "U zit aangesloten via kabel, uw ip is: "${gr}$kabel ${rst} && echo &&  echo Gemaakt door ${rd}Patrick Pigmans${rst} voor${cy} Servicenet ITF${rst} && sleep 5 && echo ;;
     2)    echo && echo "U zit aangesloten via WIFI. Uw IP is: "${gr}$wifi ${rst} && echo && echo Gemaakt door ${rd}Patrick Pigmans${rst} voor${cy} Servicenet ITF${rst} &&  sleep 5 && echo;;
-    *)    echo "Afsluiten" && echo && echo Gemaakt door ${rd}Patrick Pigmans${rst} voor${cy} Servicenet ITF${rst} && sleep 3 && echo;;
+    *)	  echo ${rd}"Afsluiten"$rst && echo && echo Gemaakt door ${rd}Patrick Pigmans${rst} voor${cy} Servicenet ITF${rst} && sleep 3 && echo;;
 esac
+
+
+
