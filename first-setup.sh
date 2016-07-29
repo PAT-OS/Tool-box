@@ -1,7 +1,7 @@
 #!/bin/sh
 
 echo Welkom bij de First setup van de Service-pi toolbox
-echo "(tools zijn: Systeminfo IPconfig Overscan rpi-update)"
+echo "(tools zijn: Systeminfo+benodigdheden IPconfig Overscan rpi-update)"
 
 echo als u dit wil installeren typ ja, anders nee
 read x
@@ -14,11 +14,15 @@ chmod +x set_overscan.sh
 mv set_overscan.sh /usr/bin/overscan
 cd ..
 cp -r ./set_overscan /usr/bin/set_overscan
+chmod +x arch
 chmod +x systeminfo
 chmod +x ipconfig.sh
+mv arch /usr/bin/arch
 mv systeminfo /usr/bin/systeminfo
 mv ipconfig.sh /usr/bin/ipconfig
 sudo curl -L --output /usr/bin/rpi-update https://raw.githubusercontent.com/Hexxeh/rpi-update/master/rpi-update && sudo chmod +x /usr/bin/rpi-update
+cd ..
+rm -rf Tool-box
 sleep 4
 echo "we zijn klaar met het klaar zetten, zodra u deze tools wil gebruiken typ dan het volgende"
 echo "systeminfo voor system info"
@@ -44,6 +48,8 @@ cd ..
 cp -r ./set_overscan /usr/bin/set_overscan
 chmod +x systeminfo
 chmod +x ipconfig.sh
+chmod +x arch
+mv arch /usr/bin/arch
 mv systeminfo /usr/bin/systeminfo
 mv ipconfig.sh /usr/bin/ipconfig
 sleep 4
